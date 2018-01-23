@@ -6,7 +6,7 @@
     <meta name="description" content="Active Learning Demo">
     <meta name="author" content="XHQ (https://github.com/Code-0x00)">
 
-    <script src="//10.12.12.30/js/xhq.js"></script>
+    <script src="//10.12.12.30/js/xhq.js?v=0"></script>
     <link rel="stylesheet" type="text/css" href="//10.12.12.30/css/xhq.css">
     <script type="text/javascript">
      setJS("echarts.min.js");
@@ -80,11 +80,7 @@
           </div>
           <div style="width: 50%;float: right;" id="list_div">
             <h4>List:</h4>
-            <ul class="x_ul">
-              {% for single_pred in list %}
-                <li>{{ single_pred['SP_NAME'] }}</li>
-              {% endfor %}
-            </ul>
+            <ul class="x_ul" id="xUl"></ul>
           </div>
         </div>
       </div>
@@ -92,14 +88,20 @@
       <div id="plot_div" style="width: 100%;height:400px;"></div>
         <script type="text/javascript">
         var myChart = echarts.init(document.getElementById('plot_div'));
-        plot_main("{{username}}",myChart);
-        document.getElementById("add_count_id").value=0;    
+        var ti=document.getElementById('timeid');
+       
+        document.getElementById("add_count_id").value=0;   
 
-        var ti=document.getElementById('timeid')
+
+        xul=document.getElementById('xUl');
+	
         setInterval(function(){
-
-        ti.innerHTML=Date();
+ 			plot_main("{{username}}",myChart);
+        	ti.innerHTML=Date();
+        	setList("{{username}}",xul);
+        	//debug();
         },1000);
+
         </script>
  </body>
 </html>
