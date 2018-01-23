@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="description" content="Active Learning Demo">
+      <meta name="author" content="XHQ (https://github.com/Code-0x00)">
+
+      <script src="//10.12.12.30/js/xhq.js"></script>
+      <script type="text/javascript">
+       setJS("echarts.min.js");
+       setJS("jquery-2.1.1.js");
+       setJS("bootstrap.min.js");
+       setCSS("hack.css");
+    </script>
+    <link rel="stylesheet" type="text/css" href="//10.12.12.30/css/xhq.css">
+    <title>login</title>
+  </head>
+  <body>
+    <form  style="margin:20px;border:1px solid red" method="post" action="/login">
+        <span>UserName:</span><input type="text" name="username" id="username"><br/>
+        <span>PassWord:</span><input type="password" name="password" id="password"><br/>
+        <button type="submit" id="loginBtn" class="btn btn-primary">login</button>
+    </form>
+    {% if error %}
+        <h1 style="color:red">{{ error }}!</h1>
+    {% endif %}
+  </body>
+</html>

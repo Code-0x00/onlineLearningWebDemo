@@ -1,0 +1,6 @@
+*.jpg
+*.pyc
+*.db
+*.pyd
+*.json
+*.log
