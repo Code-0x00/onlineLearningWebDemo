@@ -20,6 +20,10 @@ from flask import render_template, redirect,url_for
 from flask import request,session
 import json
 
+import multiprocessing
+
+import bing
+
 app = flask.Flask(__name__)
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
@@ -61,6 +65,11 @@ def add():
             name=xargs.get(keywd,'')
             if not name=='':
                 xsq.insert(name,'11')
+
+                lock=multiprocessing.Lock()
+                p=multiprocessing.Process(target=bing.xCrawl,args=(lock,name))
+                p.start()
+
     return flask.render_template('index.html', list=xsq.select(),username=session['username'])
 
 @app.route('/login', methods=['POST','GET'])
